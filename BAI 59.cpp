@@ -1,10 +1,10 @@
 #include<stdio.h>
-#include<conio.h>
-void nhap_mang(int A[], int &n){
+
+void nhap_mang(int A[], int *n){
     printf("Nhap so luong phan tu: ");
-    scanf("%d", &n);
+    scanf("%d", &(*n));
     printf("Nhap cac phan tu: ");
-    for (int i = 0; i < n; i++) {
+    for (int i = 0; i < *n; i++) {
         scanf("%d", &A[i]);
     }
 }
@@ -15,7 +15,7 @@ void xuat_mang(int A[], int n){
 	}
 }
 
-int UCLNof2so(int a, int b) {
+long long UCLNof2so(int a, int b) {
     while (b != 0) {
         int r = a % b;
         a = b;
@@ -24,7 +24,7 @@ int UCLNof2so(int a, int b) {
     return a;
 }
 
-int UCLN(int A[], int n){
+long long UCLN(int A[], int n){
 	int uc = A[0];
 	for(int i=1; i<n; i++){
 		uc = UCLNof2so(A[i],uc);
@@ -32,8 +32,8 @@ int UCLN(int A[], int n){
 	return uc;
 }
 
-int Max(int A[], int n){
-	int Max = A[0];
+long long Max(int A[], int n){
+	long long Max = A[0];
 	for(int i=1; i<n; i++)
 		if(A[i] > Max){
 			Max = A[i];
@@ -53,14 +53,19 @@ long long BCNN(int A[], int n){
 }
 
 int main(){
-    int A[100], n;
-    nhap_mang(A, n);
+    int A[100000], n;
+    nhap_mang(A, &n);
     printf("\nCac phan tu trong mang: ");
     xuat_mang(A, n);
-    printf("\nUCLN cua mang: %d\n", UCLN(A, n));
+    printf("\nUCLN cua mang: %lld\n", UCLN(A, n));
     printf("BCNN cua mang: %lld\n", BCNN(A, n));
     return 0;
 }
+
+
+	
+
+
 
 
 	

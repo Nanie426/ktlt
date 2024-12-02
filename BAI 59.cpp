@@ -15,7 +15,7 @@ void xuat_mang(int A[], int n){
 	}
 }
 
-long long UCLNof2so(int a, int b) {
+int UCLNof2so(int a, int b) {
     while (b != 0) {
         int r = a % b;
         a = b;
@@ -24,7 +24,7 @@ long long UCLNof2so(int a, int b) {
     return a;
 }
 
-long long UCLN(int A[], int n){
+int UCLN(int A[], int n){
 	int uc = A[0];
 	for(int i=1; i<n; i++){
 		uc = UCLNof2so(A[i],uc);
@@ -32,7 +32,7 @@ long long UCLN(int A[], int n){
 	return uc;
 }
 
-long long Max(int A[], int n){
+/*long long Max(int A[], int n){
 	long long Max = A[0];
 	for(int i=1; i<n; i++)
 		if(A[i] > Max){
@@ -50,6 +50,14 @@ long long BCNN(int A[], int n){
 		}
 	}
 	return Boiso;
+}*/
+
+long long BCNN(int A[], int n) {
+    long long bcnn = A[0];
+    for (int i = 1; i < n; i++) {
+        bcnn = (bcnn * A[i]) / UCLNof2so(bcnn, A[i]);
+    }
+    return bcnn;
 }
 
 int main(){
@@ -57,17 +65,11 @@ int main(){
     nhap_mang(A, &n);
     printf("\nCac phan tu trong mang: ");
     xuat_mang(A, n);
-    printf("\nUCLN cua mang: %lld\n", UCLN(A, n));
+    printf("\nUCLN cua mang: %d\n", UCLN(A, n));
     printf("BCNN cua mang: %lld\n", BCNN(A, n));
     return 0;
 }
 
 
 	
-
-
-
-
-	
-
 
